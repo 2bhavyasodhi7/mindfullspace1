@@ -1,0 +1,56 @@
+
+@keyframes gentle-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.stressPageBackground {
+  background: linear-gradient(to bottom right, #8BA989/30 0%, #F2C94C/20 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.stressPageBackground::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+.softShadow {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.hoverEffect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hoverEffect:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.floatingElement {
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+.fadeInSection {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

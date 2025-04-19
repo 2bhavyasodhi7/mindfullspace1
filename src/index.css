@@ -1,0 +1,473 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+
+    --mindful: #73A580;
+    --mindful-dark: #5D8469;
+    --mindful-darker: #3e574b;
+    --mindful-light: #A3C2AB;
+    --mindful-lighter: #E8F2EB;
+
+    --gold: #FFD700;
+    --gold-light: #FFEC80;
+    --gold-dark: #E6B800;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+  }
+
+  /* Additional variables for chatbot UI */
+  :root {
+    --green-dark: #5a7e6b;
+    --green-light: #8bbd9c;
+    --off-white: #f6faf7;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Container utility */
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+
+  /* Typography utilities */
+  .mindful-heading {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight;
+  }
+  .mindful-subheading {
+    @apply text-xl text-gray-600 mt-4;
+  }
+
+  /* Section utility */
+  .mindful-section {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  /* Navbar styles */
+  .navbar-circle {
+    @apply relative w-[95%] max-w-6xl mx-auto px-8 py-4 sm:py-3 rounded-full 
+           backdrop-blur-xl bg-white/10 
+           border border-white/20 shadow-lg
+           overflow-hidden;
+    background: radial-gradient(circle, rgba(115, 165, 128, 0.9), rgba(93, 132, 105, 0.9), rgba(62, 87, 75, 0.9));
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav-link {
+    @apply text-white font-raleway text-sm font-medium transition-all duration-300
+           relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5
+           after:bg-white after:transform after:scale-x-0 after:origin-bottom-right
+           after:transition-transform hover:text-green-300 hover:after:scale-x-100
+           hover:after:origin-bottom-left;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav-link-mobile {
+    @apply text-white font-raleway text-sm font-medium py-2 
+           transition-all duration-300 hover:text-green-300 hover:translate-x-1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Dropdown menu styling */
+  .dropdown-menu {
+    @apply backdrop-blur-xl bg-[#3e574b]/90 border border-white/20;
+  }
+
+  /* Semi-circle chart styling */
+  .semi-circle-chart {
+    @apply relative w-24 h-12 overflow-hidden;
+  }
+  
+  .semi-circle-background {
+    @apply absolute top-0 left-0 w-full h-full bg-gray-100 dark:bg-gray-700 rounded-t-full;
+  }
+  
+  .semi-circle-fill {
+    @apply absolute top-0 left-0 w-full h-full rounded-t-full origin-bottom transform rotate-180;
+  }
+  
+  .chart-label {
+    @apply absolute top-0 left-0 w-full h-full flex items-center justify-center text-lg font-medium;
+  }
+  
+  /* Apple-style button */
+  .apple-button {
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium text-sm rounded-full
+           bg-mindful text-white transition-all duration-300 ease-in-out
+           hover:bg-mindful-dark shadow-sm hover:shadow-md
+           transform hover:scale-105 active:scale-95;
+  }
+  
+  .apple-button-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium text-sm rounded-full
+           bg-white text-mindful border border-mindful/30 transition-all duration-300 ease-in-out
+           hover:bg-mindful/10 shadow-sm hover:shadow-md
+           transform hover:scale-105 active:scale-95;
+  }
+  
+  /* Article styles */
+  .prose h1 {
+    @apply text-4xl font-bold text-mindful-dark mb-6 mt-8 font-raleway;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-semibold text-mindful-dark mt-8 mb-4 font-raleway;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-medium text-mindful mt-6 mb-3 font-raleway;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed text-gray-700 dark:text-gray-300;
+  }
+  
+  .prose ul, .prose ol {
+    @apply my-4 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose img {
+    @apply rounded-lg shadow-md my-6 mx-auto;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-mindful pl-4 italic my-6 text-gray-600 dark:text-gray-400;
+  }
+  
+  .prose a {
+    @apply text-mindful hover:text-mindful-dark underline;
+  }
+
+  /* Bokeh background styles */
+  .bokeh-circle {
+    @apply absolute rounded-full blur-xl opacity-75;
+    background: radial-gradient(circle at center, var(--gold) 0%, transparent 70%);
+    animation: pulse 8s infinite alternate ease-in-out;
+  }
+
+  /* Large circles */
+  .large-circle-1 {
+    width: 400px;
+    height: 400px;
+    left: -100px;
+    top: 15%;
+    background: radial-gradient(circle at center, #73A580 0%, transparent 70%);
+    animation-delay: 0s;
+  }
+
+  .large-circle-2 {
+    width: 350px;
+    height: 350px;
+    right: -50px;
+    top: 60%;
+    background: radial-gradient(circle at center, var(--gold) 0%, transparent 70%);
+    animation-delay: 2s;
+  }
+
+  .large-circle-3 {
+    width: 500px;
+    height: 500px;
+    left: 40%;
+    top: -100px;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.8) 0%, transparent 70%);
+    animation-delay: 4s;
+  }
+
+  .large-circle-4 {
+    width: 450px;
+    height: 450px;
+    left: 15%;
+    bottom: -150px;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.7) 0%, transparent 70%);
+    animation-delay: 1s;
+  }
+
+  .large-circle-5 {
+    width: 380px;
+    height: 380px;
+    right: 20%;
+    top: 20%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.6) 0%, transparent 70%);
+    animation-delay: 3s;
+  }
+
+  /* Medium circles */
+  .medium-circle-1 {
+    width: 200px;
+    height: 200px;
+    left: 25%;
+    top: 30%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.8) 0%, transparent 70%);
+    animation-delay: 2s;
+  }
+
+  .medium-circle-2 {
+    width: 250px;
+    height: 250px;
+    right: 30%;
+    bottom: 15%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.7) 0%, transparent 70%);
+    animation-delay: 5s;
+  }
+
+  .medium-circle-3 {
+    width: 220px;
+    height: 220px;
+    left: 60%;
+    top: 50%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.6) 0%, transparent 70%);
+    animation-delay: 1.5s;
+  }
+
+  .medium-circle-4 {
+    width: 260px;
+    height: 260px;
+    left: 10%;
+    top: 60%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.65) 0%, transparent 70%);
+    animation-delay: 3.5s;
+  }
+
+  .medium-circle-5 {
+    width: 240px;
+    height: 240px;
+    right: 15%;
+    top: 40%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.55) 0%, transparent 70%);
+    animation-delay: 2.5s;
+  }
+
+  .medium-circle-6 {
+    width: 230px;
+    height: 230px;
+    right: 5%;
+    bottom: 30%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.75) 0%, transparent 70%);
+    animation-delay: 4.5s;
+  }
+
+  /* Small circles */
+  .small-circle-1 {
+    width: 100px;
+    height: 100px;
+    left: 30%;
+    top: 15%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.9) 0%, transparent 70%);
+    animation-delay: 0.5s;
+  }
+
+  .small-circle-2 {
+    width: 120px;
+    height: 120px;
+    right: 40%;
+    bottom: 20%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.85) 0%, transparent 70%);
+    animation-delay: 3s;
+  }
+
+  .small-circle-3 {
+    width: 80px;
+    height: 80px;
+    left: 20%;
+    top: 40%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.75) 0%, transparent 70%);
+    animation-delay: 2.2s;
+  }
+
+  .small-circle-4 {
+    width: 90px;
+    height: 90px;
+    right: 25%;
+    top: 70%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.8) 0%, transparent 70%);
+    animation-delay: 1.8s;
+  }
+
+  .small-circle-5 {
+    width: 110px;
+    height: 110px;
+    left: 70%;
+    bottom: 40%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.7) 0%, transparent 70%);
+    animation-delay: 4.2s;
+  }
+
+  .small-circle-6 {
+    width: 85px;
+    height: 85px;
+    right: 10%;
+    top: 25%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.75) 0%, transparent 70%);
+    animation-delay: 3.8s;
+  }
+
+  .small-circle-7 {
+    width: 95px;
+    height: 95px;
+    left: 45%;
+    bottom: 10%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.65) 0%, transparent 70%);
+    animation-delay: 2.7s;
+  }
+
+  .small-circle-8 {
+    width: 75px;
+    height: 75px;
+    left: 85%;
+    top: 50%;
+    background: radial-gradient(circle at center, rgba(115, 165, 128, 0.7) 0%, transparent 70%);
+    animation-delay: 1.2s;
+  }
+
+  /* Custom scrollbar for chat area */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    background: var(--green-light);
+    border-radius: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 8px;
+  }
+  
+  /* Animation for chat bubbles */
+  .animate-fadeInUp {
+    animation: fadeInUp 0.5s;
+  }
+}
+
+/* Font Family Definitions */
+.font-stay-calm {
+  font-family: 'Stay Calm', 'Arial', sans-serif;
+}
+
+.font-calming {
+  font-family: 'Calming', 'Georgia', serif;
+}
+
+.font-raleway {
+  font-family: 'Raleway', 'Arial', sans-serif;
+}
+
+.font-ff-yoga {
+  font-family: 'FF Yoga', 'Georgia', serif;
+}
+
+.font-tan-mon-cheri {
+  font-family: 'Tan Mon Cheri', 'Arial', sans-serif;
+}
+
+/* Animation for fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Navbar animation */
+@keyframes navbarPulse {
+  0% { box-shadow: 0 0 10px rgba(115, 165, 128, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(115, 165, 128, 0.8); }
+  100% { box-shadow: 0 0 10px rgba(115, 165, 128, 0.5); }
+}
+
+.navbar-circle:hover {
+  animation: navbarPulse 2s infinite;
+}
+
+/* Animation keyframes - will be used with inline styles */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes float1 { to { top: -60px; left: -80px; } }
+@keyframes float2 { to { top: 140px; right: -60px; } }
+@keyframes float3 { to { bottom: -40px; left: 62%; } }
